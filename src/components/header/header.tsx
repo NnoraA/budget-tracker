@@ -1,21 +1,22 @@
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Button } from '../button/button';
 import { Logo } from '../logo/logo';
 
 const navData = [
   { name: 'Statistics', to: '/statistics' },
   { name: 'Tracker', to: '/tracker' },
-  { name: 'Sign in', to: '/auth' },
+  {
+    name: 'Sign out',
+    to: '/auth',
+    onclick: (): void => {
+      signOut();
+    },
+  },
 ];
 
 export const Header = (): JSX.Element => {
   const router = useRouter();
-
-  const onLogoutButtonClick = (): void => {
-    signOut();
-  };
 
   return (
     <>
@@ -32,11 +33,11 @@ export const Header = (): JSX.Element => {
                   : 'text-2xl  hover:text-gray-500'
               }
               href={e.to}
+              onClick={e.onclick}
             >
               {e.name}
             </Link>
           ))}
-          <Button onClick={onLogoutButtonClick}>Logout</Button>
         </div>
       </div>
     </>
