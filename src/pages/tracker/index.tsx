@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 const Tracker = (): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <>
       {modalOpen && (
